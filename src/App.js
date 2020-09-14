@@ -1,10 +1,12 @@
 import React from "react";
-import GlobalStyle from "./style/globalStyle/GlobalStyle";
+import Form from "./container/Form/Form";
+import PixabayInfo from "./components/PixabayInfo/PixabayInfo";
 
 function App() {
   return (
-    <div className="App">
-      <GlobalStyle />
+    <div className="app">
+      <Form />
+      <PixabayInfo />
     </div>
   );
 }

@@ -33,6 +33,11 @@ const GlobalStyle = createGlobalStyle`
   z-index:1 
     }
   }
+
+  .app{
+    position:relative;
+    min-height:100vh;
+  }
 `;
 
 export default GlobalStyle;
