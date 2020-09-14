@@ -9,6 +9,6 @@ export const makeLinkForDownloadFunc = (formData) => {
   link.setAttribute("href", encodedUri);
   link.setAttribute("download", "form_data.csv");
   link.setAttribute("class", "csvLink");
-  link.textContent = "Download CSV form";
+  link.textContent = "Download form CSV file";
   form.appendChild(link);
 };

@@ -9,6 +9,7 @@ export class Form extends Component {
     phoneValue: "",
     numberValue: "",
     uploadValue: "",
+    file: null,
     checkboxOne: false,
     checkboxTwo: false,
     formResultMessage: "",
@@ -16,19 +17,24 @@ export class Form extends Component {
   };
 
   formInputsChangeFunc = (e) => {
-    if (e.target.type === "file") {
+    const target = e.target;
+    if (target.type === "file") {
+      if (target.files.length !== 0) {
+        this.setState({
+          uploadValue: target.files[0],
+          file: URL.createObjectURL(target.files[0]),
+        });
+      }
+    } else if (target.type === "checkbox") {
       this.setState({
-        uploadValue: e.target.files[0],
-      });
-    } else if (e.target.type === "checkbox") {
-      this.setState({
-        [e.target.name]: e.target.checked,
+        [target.name]: target.checked,
       });
     } else {
       this.setState({
-        [e.target.name]: e.target.value,
+        [target.name]: target.value,
       });
     }
+    const patternMail = /^([a-zA-Zęółśążźćń]{3,})@([a-zA-Zęółśążźćń]{3,})\.pl$/;
   };
 
   validateFormFunc = (event) => {
@@ -66,17 +72,30 @@ export class Form extends Component {
         numberValue,
         uploadValue.name,
       ];
-      makeLinkForDownloadFunc(formData);
 
+      makeLinkForDownloadFunc(formData);
       this.setState({
-        formResultMessage: "The form has been sent successfully!",
+        formResultMessage: "Form has been sent successfully!",
         formSendResult: true,
+        nameValue: "",
+        mailValue: "",
+        phoneValue: "",
+        numberValue: "",
+        checkboxOne: false,
+        checkboxTwo: false,
+        file: null,
       });
     } else {
       this.setState({
-        formResultMessage: "The form has not been sent!",
+        formResultMessage: "Ups! Need correct the data in form!",
       });
     }
+    setTimeout(() => {
+      this.setState({
+        formResultMessage: "",
+        formSendResult: false,
+      });
+    }, 3000);
   };
 
   render() {
@@ -87,6 +106,9 @@ export class Form extends Component {
       numberValue,
       formResultMessage,
       formSendResult,
+      file,
+      checkboxOne,
+      checkboxTwo,
     } = this.state;
     return (
       <FormView
@@ -96,8 +118,11 @@ export class Form extends Component {
         mailValue={mailValue}
         phoneValue={phoneValue}
         numberValue={numberValue}
+        checkboxOne={checkboxOne}
+        checkboxTwo={checkboxTwo}
         formResultMessage={formResultMessage}
         formSendResult={formSendResult}
+        file={file}
       />
     );
   }

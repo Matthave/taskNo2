@@ -3,7 +3,8 @@ import styled, { css } from "styled-components";
 
 const ButtonContainer = styled.div`
   position: relative;
-  margin-bottom: 60px;
+  margin-bottom: 40px;
+  overflow: hidden;
 `;
 const Button = styled.button`
   position: relative;

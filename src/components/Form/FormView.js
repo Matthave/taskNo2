@@ -33,7 +33,6 @@ const Input = styled.input`
   border-radius: 100px;
   border: 2px solid transparent;
   transition: 0.1s;
-  vertical-align: middle;
 
   &:focus {
     border: ${(props) =>
@@ -51,15 +50,23 @@ const Label = styled.label`
 
 const FormMessage = styled.h2`
   width: 100%;
-  height: 50px;
-  line-height: 50px;
+  height: 40px;
+  line-height: 40px;
   background-color: rgba(0, 0, 0, 0.6);
   text-align: center;
   margin: auto 0;
   font-size: 1.6rem;
   color: ${(props) => (props.fontColor ? "#61BD4F" : "#CF513D")};
   opacity: ${(props) => (props.opacity ? 1 : 0)};
-  transition: 0.7s;
+  transition: 0.4s;
+`;
+
+const ImgFile = styled.div`
+  width: 100px;
+  height: 100px;
+  background-size: cover;
+  border: 2px solid #222;
+  margin: 0 auto 10px;
 `;
 
 function FormView({
@@ -69,8 +76,11 @@ function FormView({
   mailValue,
   phoneValue,
   numberValue,
+  checkboxOne,
+  checkboxTwo,
   formResultMessage,
   formSendResult,
+  file,
 }) {
   return (
     <Form className="form">
@@ -114,6 +124,8 @@ function FormView({
         name="uploadValue"
         onChange={(e) => formInputsChangeFunc(e)}
       />
+      <ImgFile style={{ backgroundImage: `url(${file})` }} />
+
       <Label htmlfor="checkboxOne" biggerMargin>
         Do You wanna send this form?*
         <Input
@@ -122,6 +134,7 @@ function FormView({
           type="checkbox"
           id="checkboxOne"
           name="checkboxOne"
+          checked={checkboxOne}
           onChange={(e) => formInputsChangeFunc(e)}
         />
       </Label>
@@ -135,6 +148,7 @@ function FormView({
           type="checkbox"
           id="checkboxTwo"
           name="checkboxTwo"
+          checked={checkboxTwo}
           onChange={(e) => formInputsChangeFunc(e)}
         />
       </Label>
