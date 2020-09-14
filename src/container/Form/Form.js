@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import FormView from "../../components/Form/FormView";
+import { makeLinkForDownloadFunc } from "../../utils";
 
 export class Form extends Component {
   state = {
@@ -10,6 +11,8 @@ export class Form extends Component {
     uploadValue: "",
     checkboxOne: false,
     checkboxTwo: false,
+    formResultMessage: "",
+    formSendResult: false,
   };
 
   formInputsChangeFunc = (e) => {
@@ -56,14 +59,35 @@ export class Form extends Component {
       checkboxOne &&
       checkboxTwo
     ) {
-      console.log("Success");
+      const formData = [
+        nameValue,
+        mailValue,
+        phoneValue,
+        numberValue,
+        uploadValue.name,
+      ];
+      makeLinkForDownloadFunc(formData);
+
+      this.setState({
+        formResultMessage: "The form has been sent successfully!",
+        formSendResult: true,
+      });
     } else {
-      console.log("Fail");
+      this.setState({
+        formResultMessage: "The form has not been sent!",
+      });
     }
   };
 
   render() {
-    const { nameValue, mailValue, phoneValue, numberValue } = this.state;
+    const {
+      nameValue,
+      mailValue,
+      phoneValue,
+      numberValue,
+      formResultMessage,
+      formSendResult,
+    } = this.state;
     return (
       <FormView
         formInputsChangeFunc={this.formInputsChangeFunc}
@@ -72,6 +96,8 @@ export class Form extends Component {
         mailValue={mailValue}
         phoneValue={phoneValue}
         numberValue={numberValue}
+        formResultMessage={formResultMessage}
+        formSendResult={formSendResult}
       />
     );
   }

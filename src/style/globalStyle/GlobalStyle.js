@@ -38,6 +38,19 @@ const GlobalStyle = createGlobalStyle`
     position:relative;
     min-height:100vh;
   }
+
+  .csvLink{
+    position:absolute;
+    bottom:0;
+    width:100%;
+    height: 25px;
+    line-height:25px;
+    text-align:center;
+    font-size:1.2rem;
+    background-color: rgba(0, 0, 0, 0.6);
+    color:#fff;
+    text-decoration:none;
+  }
 `;
 
 export default GlobalStyle;

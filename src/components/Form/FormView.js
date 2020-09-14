@@ -11,13 +11,13 @@ const Form = styled.form`
   left: 50%;
   transform: translate(-50%, -50%);
   width: 90%;
-  height: 90vh;
+  height: 100vh;
   min-height: 700px;
+  min-width: 300px;
   max-width: 500px;
   background-color: rgba(255, 255, 255, 0.4);
   box-shadow: 0 0 10px 1px #111;
-  border-radius: 10px;
-  padding: 20px 5px;
+  padding: 20px 0px;
   z-index: 2;
 
   @media ${device.laptop} {
@@ -49,6 +49,19 @@ const Label = styled.label`
   margin-top: 5px;
 `;
 
+const FormMessage = styled.h2`
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  background-color: rgba(0, 0, 0, 0.6);
+  text-align: center;
+  margin: auto 0;
+  font-size: 1.6rem;
+  color: ${(props) => (props.fontColor ? "#61BD4F" : "#CF513D")};
+  opacity: ${(props) => (props.opacity ? 1 : 0)};
+  transition: 0.7s;
+`;
+
 function FormView({
   formInputsChangeFunc,
   validateFormFunc,
@@ -56,9 +69,11 @@ function FormView({
   mailValue,
   phoneValue,
   numberValue,
+  formResultMessage,
+  formSendResult,
 }) {
   return (
-    <Form>
+    <Form className="form">
       <Label htmlfor="name">Name*</Label>
       <Input
         id="name"
@@ -123,7 +138,9 @@ function FormView({
           onChange={(e) => formInputsChangeFunc(e)}
         />
       </Label>
-
+      <FormMessage opacity={formResultMessage} fontColor={formSendResult}>
+        {formResultMessage}
+      </FormMessage>
       <FormBtn validateFormFunc={validateFormFunc} />
     </Form>
   );

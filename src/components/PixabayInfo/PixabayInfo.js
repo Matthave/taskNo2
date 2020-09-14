@@ -3,11 +3,12 @@ import styled from "styled-components";
 
 const PixabayWrap = styled.div`
   position: absolute;
-  bottom: 0;
-  right: 0;
+  top: 0;
+  left: 0;
   background-color: rgba(255, 255, 255, 0.1);
   padding: 5px 5px;
   color: #aaa;
+  z-index: 5;
 `;
 
 const Link = styled.a`
