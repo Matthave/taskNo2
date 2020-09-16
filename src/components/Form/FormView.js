@@ -86,6 +86,7 @@ function FormView({
     <Form className="form">
       <Label htmlfor="name">Name*</Label>
       <Input
+        placeholder="e.g. Mateusz"
         id="name"
         name="nameValue"
         value={nameValue}
@@ -94,6 +95,7 @@ function FormView({
 
       <Label htmlfor="mail">E-mail*</Label>
       <Input
+        placeholder="example@example.pl"
         id="mail"
         name="mailValue"
         value={mailValue}
@@ -102,6 +104,7 @@ function FormView({
 
       <Label htmlfor="phone">Phone*</Label>
       <Input
+        placeholder="+48 XXX XXX XXX"
         id="phone"
         name="phoneValue"
         value={phoneValue}
@@ -110,6 +113,7 @@ function FormView({
 
       <Label htmlfor="number">Number*</Label>
       <Input
+        placeholder="Number 0 to 9, 4-6 digits"
         id="number"
         name="numberValue"
         value={numberValue}
